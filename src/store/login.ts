@@ -1,6 +1,8 @@
-import {action, observable, flow, configure, runInAction} from "mobx";
+import {observable, configure} from "mobx";
 import {DONE, ERROR, NOT_STARTED, PENDING} from "../constants/requestStatuses";
-import {login, register} from "../api";
+import { login, register, getUser } from "../api";
+import {generatorAction} from "../utis/bindDecorator";
+
 configure({enforceActions: 'observed'});
 
 class Login {
@@ -8,24 +10,19 @@ class Login {
   @observable state = NOT_STARTED;
   @observable error = '';
 
-  @action
-  login = async ({ username, password }) => {
-    this.state = PENDING;
-    try {
-      const user = await login({ username, password });
-      runInAction(() => {
+  login = generatorAction(function* ({username, password}) {
+      this.state = PENDING;
+      try {
+        const { data: user } = yield login({username, password});
         this.state = DONE;
         this.user = user;
-      })
-    } catch (e) {
-      runInAction(() => {
+      } catch (e) {
         this.state = ERROR;
-      })
-    }
-  };
+      }
+    }, this
+  );
 
-  @action
-  register = async ({ username, password, passwordRepeat }) => {
+  register = generatorAction(function *({username, password, passwordRepeat}) {
     if (password !== passwordRepeat) {
       this.state = ERROR;
       this.error = 'Passwords miss match';
@@ -34,29 +31,24 @@ class Login {
 
     this.state = PENDING;
     try {
-      const user = await register({ username, password, passwordRepeat });
-      runInAction(() => {
-        this.state = DONE;
-        this.user = user;
-      })
+      const { data: user } = yield register({username, password, passwordRepeat});
+      this.state = DONE;
+      this.user = user;
     } catch (e) {
-      runInAction(() => {
-        this.state = ERROR;
-      })
+      this.state = ERROR;
     }
-  }
+  }, this);
 
-  @action
-  getUserData = async () => {
+  getUserData = generatorAction(function *() {
     this.state = PENDING;
     try {
-      const user = await getUser();
+      const { data: user } = yield getUser();
+      this.state = DONE;
+      this.user = user;
     } catch (e) {
-      runInAction(() => {
-        this.state = ERROR;
-      })
+      this.state = ERROR;
     }
-  }
+  }, this)
 };
 
-export default new Login();
+export const loginStore = new Login();

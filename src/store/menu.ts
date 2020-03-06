@@ -1,27 +1,39 @@
-import {action, observable, configure, runInAction} from "mobx";
+import { observable, configure } from "mobx";
 import {DONE, ERROR, NOT_STARTED, PENDING} from "../constants/requestStatuses";
-import {getMenu} from "../api";
-configure({enforceActions: 'observed'});
+import {getDiscounts, getMenu} from "../api";
+import { generatorAction } from '../utis/bindDecorator'
+configure({enforceActions: 'never'});
 
 class Menu {
-  @observable menu = [false];
-  @observable public state = NOT_STARTED;
+  @observable menu = [];
+  @observable discounts = [];
+  @observable menuLoadingState = NOT_STARTED;
+  @observable discountsLoadingState = NOT_STARTED;
 
-  @action
-  getMenu = async () => {
-    this.state = PENDING;
-    try {
-      const { data } = await getMenu();
-      runInAction(() => {
-        this.state = DONE;
+
+  getMenu = generatorAction(
+    function* () {
+      this.menuLoadingState = PENDING;
+      try {
+        const {data} = yield getMenu();
+        this.menuLoadingState = DONE;
         this.menu = data;
-      })
-    } catch (e) {
-      runInAction(() => {
-        this.state = ERROR;
-      })
-    }
-  }
+      } catch (e) {
+        this.menuLoadingState = ERROR;
+      }
+    }, this);
+
+  getDiscounts = generatorAction(
+    function* () {
+      this.menuLoadingState = PENDING;
+      try {
+        const { data } = yield getDiscounts();
+        this.menuLoadingState = DONE;
+        this.discounts = data;
+      } catch (e) {
+        this.menuLoadingState = ERROR;
+      }
+    }, this)
 };
 
-export default new Menu();
+export const menuStore = new Menu();
