@@ -11,7 +11,7 @@ This is mobile application for restaurant and allows to:
 
  [Prototype](https://www.figma.com/file/rXjx7S4emLB49jY6yOonWp/Dino?node-id=0%3A1)
 
-![Application logo](./src/assets/dino.jpg)
+![Application logo](src/assets/images/dino.jpg)
 
 ## Running
 Install all needed requirements

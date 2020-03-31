@@ -9,9 +9,9 @@ export const HomePage = inject('menu')(observer(({ menu }) => {
     <View style={homeStyles.container}>
       <Text onPress={menu.getMenu}>
         {menu.menuLoadingState}
-        {menu.menu.map((i) => i.name)}
+        {/*{menu.menu.map((i) => i.name)}*/}
       </Text>
-      <Locations />
+      {/*<Locations />*/}
     </View>
   );
 }));

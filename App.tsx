@@ -6,6 +6,9 @@ import {Provider} from "mobx-react";
 import {menuStore} from "./src/store/menu";
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {HeaderBlock} from "./src/modules/shared/Header/header";
+import {HeaderLogo} from "./src/modules/shared/Header/HeaderLogo/headerLogo"
+import {CoinCounter} from "./src/modules/shared/Header/CoinCounter/coinCounter";
 
 const Stack = createStackNavigator();
 
@@ -17,7 +20,13 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomePage}
-            options={{title: 'Welcome'}}
+            options={
+              {
+                headerStyle: {backgroundColor: '#99D9F4'},
+                headerTitle: () => <HeaderBlock title={'Dino'} />,
+                headerLeft: () => <HeaderLogo />,
+                headerRight: () => <CoinCounter />
+              }}
           />
         </Stack.Navigator>
       </NavigationContainer>
