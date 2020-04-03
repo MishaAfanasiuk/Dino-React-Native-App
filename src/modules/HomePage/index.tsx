@@ -8,7 +8,7 @@ import {sharedStyles} from "../../sharedStyles/styles";
 import {Card} from "../shared/Card";
 const image = require("../../assets/images/happyHours.jpg")
 
-export const HomePage = inject('menu')(observer(({ navigation, menu }) => {
+export const HomePage = (observer(({ navigation }) => {
   return (
     <SafeAreaView style={sharedStyles.scrollBody}>
       <ScrollView contentContainerStyle={homeStyles.wrapper}>
