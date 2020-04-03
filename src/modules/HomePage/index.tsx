@@ -1,17 +1,26 @@
 import React from 'react';
 import {homeStyles} from "./styles";
-import {Button, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, ScrollViewComponent, View} from 'react-native';
 import {inject, observer} from 'mobx-react';
-import { Locations } from '../Locations';
 import FooterComponent from "../shared/Footer";
 import {CustomText} from "../shared/CustomText";
 import {sharedStyles} from "../../sharedStyles/styles";
+import {Card} from "../shared/Card";
+const image = require("../../assets/images/happyHours.jpg")
 
 export const HomePage = inject('menu')(observer(({ navigation, menu }) => {
   return (
-    <View style={sharedStyles.body}>
-      <CustomText onPress={menu.getMenu} text={'Home'} />
-      <FooterComponent navigation={navigation}/>
-    </View>
+    <SafeAreaView style={sharedStyles.scrollBody}>
+      <ScrollView contentContainerStyle={homeStyles.wrapper}>
+        <Card image={image}/>
+        <Card image={image}/>
+        <Card image={image}/>
+        <Card image={image}/>
+        <Card image={image}/>
+        <Card image={image}/>
+        <Card image={image} lastOne/>
+      </ScrollView>
+    <FooterComponent navigation={navigation}/>
+    </SafeAreaView>
   );
 }));

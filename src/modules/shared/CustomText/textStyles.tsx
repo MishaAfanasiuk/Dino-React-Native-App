@@ -3,6 +3,6 @@ import {sharedStyles} from "../../../sharedStyles/styles"
 
 export const textStyles = StyleSheet.create({
   text: {
-    // fontFamily: 'Solway'
+    // fontFamily: 'Solway-Regular'
   }
 });

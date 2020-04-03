@@ -10,20 +10,20 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {HeaderBlock} from "./src/modules/shared/Header/header";
 import {HeaderLogo} from "./src/modules/shared/Header/HeaderLogo"
 import {CoinCounter} from "./src/modules/shared/Header/CoinCounter";
-import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
+// import * as Font from 'expo-font';
+import { Font, AppLoading } from 'expo';
 import {View, Text} from "react-native";
 import {AboutPage} from "./src/modules/About";
 import {MenuPage} from "./src/modules/Menu";
 import {SalesPage} from "./src/modules/Sales";
 import {UserPage} from "./src/modules/UserPage";
+// import { Font } from "expo";
 const pageOptions =  {
   headerStyle: {backgroundColor: '#99D9F4'},
   headerTitle: () => <HeaderBlock title={'Dino'} />,
   headerLeft: () => <HeaderLogo />,
   headerRight: () => <CoinCounter />
 };
-
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -60,25 +60,19 @@ export default function App() {
     </Provider>
   );
 }
+// const componentDidMount = () => {
+//   return Font.loadAsync({'Solway-Regular': require('./src/assets/fonts/Solway-Regular.ttf')})
+// };
 // export default function App() {
-//   const [dataLoaded, setDataLoaded] = useState(false);
-//
-//   const fetchFonts = () => {
-//     return Font.loadAsync({'Solway': require('./src/assets/fonts/Solway-Regular.ttf')});
-//   };
-//   if (!dataLoaded) {
-//     return (
-//       <AppLoading
-//         startAsync={fetchFonts}
-//         onFinish={() => setDataLoaded(true)}
-//       />
-//     );
-//   }
-//   return (
-//     <View>
-//       <Text style={{ fontFamily: 'Solway' }}>
-//         Open up App.js to start working on your app!
-//       </Text>
-//     </View>
-//   );
-// }
+  // const [fontLoaded, setFontLoaded] = useState(false);
+  //
+  // if (!fontLoaded) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={componentDidMount}
+  //       onFinish={() => {
+  //         setFontLoaded(true);
+  //       }}
+  //     />
+  //   );
+  // }

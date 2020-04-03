@@ -1,17 +1,26 @@
 import React from 'react';
-import {homeStyles} from "./styles";
-import {Button, Text, View} from 'react-native';
+import {saleStyles} from "./styles";
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import {inject, observer} from 'mobx-react';
-import { Locations } from '../Locations';
 import FooterComponent from "../shared/Footer";
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CustomText} from "../shared/CustomText";
+import {Card} from "../shared/Card";
+const image = require("../../assets/images/happyHours.jpg")
 
-export const SalesPage = inject('menu')(observer(({ navigation, menu }) => {
+export const SalesPage = (observer(({ navigation }) => {
   return (
-    <View style={sharedStyles.body}>
-      <CustomText text={'Sales'} />
+    <SafeAreaView style={sharedStyles.scrollBody}>
+      <ScrollView contentContainerStyle={saleStyles.wrapper}>
+        <Card image={image} sale/>
+        <Card image={image} sale/>
+        <Card image={image} sale/>
+        <Card image={image} sale/>
+        <Card image={image} sale/>
+        <Card image={image} sale/>
+        <Card image={image} lastOne/>
+      </ScrollView>
       <FooterComponent navigation={navigation}/>
-    </View>
+    </SafeAreaView>
   );
 }));

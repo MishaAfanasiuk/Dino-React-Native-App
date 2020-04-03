@@ -5,6 +5,9 @@ export const sharedStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F0FDF6',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  scrollBody: {
+    flex: 1,
+    backgroundColor: '#F0FDF6',
   },
 });

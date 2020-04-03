@@ -7,7 +7,6 @@ export const FooterComponent = ({navigation})=>{
 
   return (
     <View style={styles.footer}>
-      {/*<Image style={styles.icon} source={require('../../../assets/images/news(1).png')}/>*/}
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <Image style={styles.icon} source={require('../../../assets/images/news(1).png')}/>
       </TouchableOpacity>

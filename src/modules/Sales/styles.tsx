@@ -1,10 +1,9 @@
 import {StyleSheet} from "react-native";
 
-export const homeStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F0FDF6',
+export const saleStyles = StyleSheet.create({
+  wrapper: {
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    zIndex: 1000
+    // backgroundColor: '#F0FDF6',
+  }
 });
