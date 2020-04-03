@@ -10,4 +10,8 @@ export const sharedStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F0FDF6',
   },
+  bigTitle: {
+    fontSize: 50,
+    margin: 10
+  }
 });
