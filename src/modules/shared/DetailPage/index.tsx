@@ -6,15 +6,19 @@ import {sharedStyles} from "../../../sharedStyles/styles";
 import FooterComponent from "../Footer";
 import {CustomText} from "../CustomText";
 
-export const DetailPage = (observer(({ navigation, image, title, sale, }) => {
+export const DetailPage = (observer(({ navigation, image, title, sale, clarificationBlock, information}) => {
   return (
-    // <ScrollView >
-    <View style={detailStyles.wrapper}>
+    <ScrollView contentContainerStyle={detailStyles.wrapper} bounces={false}>
       <ImageBackground source={image} style={detailStyles.image}>
         {/*<Image style={detailStyles.saleLabel} source={require("../../../assets/images/sale.png")} />*/}
       </ImageBackground>
-      <CustomText styles={sharedStyles.bigTitle} text={title}/>
-    </View>
-    // </ScrollView>
+      <View style={detailStyles.border}>
+        <CustomText styles={[sharedStyles.bigTitle]} text={title}/>
+      </View>
+      {clarificationBlock}
+      <View style={detailStyles.informationBlock}>
+        <CustomText styles={[sharedStyles.infoText]} text={information}/>
+      </View>
+    </ScrollView>
   );
 }));

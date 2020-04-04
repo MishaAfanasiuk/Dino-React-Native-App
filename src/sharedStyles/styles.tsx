@@ -12,6 +12,9 @@ export const sharedStyles = StyleSheet.create({
   },
   bigTitle: {
     fontSize: 50,
-    margin: 10
+  },
+  infoText: {
+    fontSize: 20,
+    textAlign: 'center'
   }
 });

@@ -8,5 +8,18 @@ export const detailStyles = StyleSheet.create({
   },
   wrapper: {
     alignItems: 'center'
+
+  },
+  border: {
+    width: '90%',
+    borderColor: 'black',
+    borderBottomWidth: 2,
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+  informationBlock: {
+    width: '90%',
+    alignContent: 'center',
+    marginBottom: 70,
   }
 });
