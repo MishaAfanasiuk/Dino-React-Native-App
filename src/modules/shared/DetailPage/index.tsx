@@ -5,8 +5,9 @@ import {observer} from 'mobx-react';
 import {sharedStyles} from "../../../sharedStyles/styles";
 import FooterComponent from "../Footer";
 import {CustomText} from "../CustomText";
+import {PostTime} from "../PostTimeBlock";
 
-export const DetailPage = (observer(({ navigation, image, title, sale, clarificationBlock, information}) => {
+export const DetailPage = (observer(({ navigation, image, title, sale, clarificationBlock, information, postTime}) => {
   return (
     <ScrollView contentContainerStyle={detailStyles.wrapper} bounces={false}>
       <ImageBackground source={image} style={detailStyles.image}>
@@ -18,6 +19,7 @@ export const DetailPage = (observer(({ navigation, image, title, sale, clarifica
       {clarificationBlock}
       <View style={detailStyles.informationBlock}>
         <CustomText styles={[sharedStyles.infoText]} text={information}/>
+        <PostTime date={postTime}/>
       </View>
     </ScrollView>
   );

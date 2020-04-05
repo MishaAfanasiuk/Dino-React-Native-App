@@ -27,6 +27,7 @@ export const AboutPage = (observer(({ navigation }) => {
         image={image} title={'Jazz Band'}
         clarificationBlock={<EventTime from={'19.03 16:00'} to={'19.03 16:00'}/>}
         information={sampleText}
+        postTime={'19.03 16:00:56'}
       />
       <FooterComponent navigation={navigation}/>
     </View>
