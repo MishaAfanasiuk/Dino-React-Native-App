@@ -10,16 +10,17 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {HeaderBlock} from "./src/modules/shared/Header/header";
 import {HeaderLogo} from "./src/modules/shared/Header/HeaderLogo"
 import {CoinCounter} from "./src/modules/shared/Header/CoinCounter";
-// import * as Font from 'expo-font';
 import { Font, AppLoading } from 'expo';
 import {View, Text} from "react-native";
 import {AboutPage} from "./src/modules/About";
 import {MenuPage} from "./src/modules/Menu";
 import {SalesPage} from "./src/modules/Sales";
 import {UserPage} from "./src/modules/UserPage";
+import {blue} from "./src/sharedStyles/styles";
+// import * as Font from 'expo-font';
 // import { Font } from "expo";
 const pageOptions =  {
-  headerStyle: {backgroundColor: '#99D9F4'},
+  headerStyle: {backgroundColor: blue},
   headerTitle: () => <HeaderBlock title={'Dino'} />,
   headerLeft: () => <HeaderLogo />,
   headerRight: () => <CoinCounter />

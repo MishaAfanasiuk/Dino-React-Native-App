@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import {green} from "../../../sharedStyles/styles";
 
 export const styles = StyleSheet.create({
   footer: {
@@ -15,7 +16,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     height: 60,
     width: '100%',
-    backgroundColor: '#99F4C3',
+    backgroundColor: green,
   },
   icon: {
     height: 40,

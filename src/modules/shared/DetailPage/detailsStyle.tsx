@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import {bordo} from "../../../sharedStyles/styles";
 
 export const detailStyles = StyleSheet.create({
   image: {
@@ -16,6 +17,7 @@ export const detailStyles = StyleSheet.create({
     borderBottomWidth: 2,
     alignContent: 'center',
     alignItems: 'center',
+    borderBottomColor: bordo
   },
   informationBlock: {
     width: '90%',

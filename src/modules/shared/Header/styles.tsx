@@ -4,6 +4,8 @@ export const styles = StyleSheet.create({
   headerText: {
     fontSize: 40,
     letterSpacing: 1,
+    color: 'black',
+    fontWeight: 'bold',
   },
   logo: {
     width: 40,
