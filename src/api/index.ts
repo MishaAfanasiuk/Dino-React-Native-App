@@ -13,6 +13,10 @@ export const getUser = (): Promise<AxiosResponse> => {
   return get(`/user`)
 };
 
+export const getNews = (): Promise<any> => {
+  return get('/news')
+};
+
 export const getMenu = (): Promise<any> => {
   return get('/menu')
 };

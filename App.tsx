@@ -17,6 +17,7 @@ import {MenuPage} from "./src/modules/Menu";
 import {SalesPage} from "./src/modules/Sales";
 import {UserPage} from "./src/modules/UserPage";
 import {blue} from "./src/sharedStyles/styles";
+import {newsStore} from "./src/store/news";
 // import * as Font from 'expo-font';
 // import { Font } from "expo";
 const pageOptions =  {
@@ -28,7 +29,7 @@ const pageOptions =  {
 const Stack = createStackNavigator();
 export default function App() {
   return (
-    <Provider login={loginStore} menu={menuStore}>
+    <Provider login={loginStore} menu={menuStore} newsStore={newsStore}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
