@@ -5,9 +5,12 @@ import {inject, observer} from 'mobx-react';
 import FooterComponent from "../shared/Footer";
 import {CustomText} from "../shared/CustomText";
 import {sharedStyles} from "../../sharedStyles/styles";
-import {Card} from "../shared/Card";
+import {Card} from "../shared/CardBlock/Card";
+import {CardBlock} from "../shared/CardBlock";
 import {getFullImageUrl} from "../../utis/getImageUrl";
+import {HomePageCardBlock} from "./Components/HomePageCardBlock";
 const image = require("../../assets/images/happyHours.jpg")
+const dataExmpl = [{image: image}, {image: image}, {image: image}, {image: image}, {image: image}, {image: image}];
 
 export const HomePage = inject('newsStore')(observer(({ navigation, newsStore }) => {
   useEffect(() => {
@@ -17,13 +20,7 @@ export const HomePage = inject('newsStore')(observer(({ navigation, newsStore })
   const { news } = newsStore;
   return (
     <SafeAreaView style={sharedStyles.scrollBody}>
-      <ScrollView contentContainerStyle={homeStyles.wrapper}>
-        {
-          news.map((item, i) => (
-            <Card source={{uri: getFullImageUrl(item.imageSrc)}} lastOne={i === news.length} key={item._id} />
-          ))
-        }
-      </ScrollView>
+    <HomePageCardBlock data={news} />
     <FooterComponent navigation={navigation}/>
     </SafeAreaView>
   );

@@ -9,7 +9,7 @@ import {CustomText} from "../shared/CustomText";
 export const MenuPage = (observer(({ navigation }) => {
   return (
     <View style={sharedStyles.body}>
-        <CustomText text={'Menu'} />
+      <CustomText text={'Menu'} />
       <FooterComponent navigation={navigation}/>
     </View>
   );

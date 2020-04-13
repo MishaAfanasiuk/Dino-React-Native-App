@@ -15,11 +15,16 @@ export const sharedStyles = StyleSheet.create({
     backgroundColor: lightGreen,
   },
   bigTitle: {
+    textAlign: 'center',
     fontSize: 50,
     fontWeight: 'bold',
   },
   infoText: {
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 35,
   }
 });

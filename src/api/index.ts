@@ -13,6 +13,10 @@ export const getUser = (): Promise<AxiosResponse> => {
   return get(`/user`)
 };
 
+export const getEvent = (eventId: string): Promise<any> => {
+  return get(`/events/${eventId}`)
+};
+
 export const getNews = (): Promise<any> => {
   return get('/news')
 };
