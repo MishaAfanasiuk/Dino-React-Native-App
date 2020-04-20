@@ -7,6 +7,10 @@ export const cardStyles = StyleSheet.create({
     height: 210,
     borderRadius: 20,
   },
+  pressContainer: {
+    width: '100%',
+    height: '100%',
+  },
   image: {
     height: '100%',
     width: '100%',

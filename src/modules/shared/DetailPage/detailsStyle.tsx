@@ -9,11 +9,9 @@ export const detailStyles = StyleSheet.create({
   },
   wrapper: {
     alignItems: 'center'
-
   },
   border: {
     width: '90%',
-    borderColor: 'black',
     borderBottomWidth: 2,
     alignContent: 'center',
     alignItems: 'center',
@@ -23,5 +21,11 @@ export const detailStyles = StyleSheet.create({
     width: '90%',
     alignContent: 'center',
     marginBottom: 70,
+  },
+  saleLabel: {
+    width: 85,
+    height: 85,
+    top: '70%',
+    left: '75%'
   }
 });

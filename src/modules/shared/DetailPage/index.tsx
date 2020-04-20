@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {detailStyles} from "./detailsStyle";
-import {View, ImageBackground, Image, ScrollView, SafeAreaView} from 'react-native';
-import {observer} from 'mobx-react';
+import {View, ImageBackground, Image, ScrollView} from 'react-native';
 import {sharedStyles} from "../../../sharedStyles/styles";
-import FooterComponent from "../Footer";
 import {CustomText} from "../CustomText";
 import {PostTime} from "../PostTimeBlock";
 
-export const DetailPage = (observer(({ navigation, image, title, sale, clarificationBlock, information, postTime}) => {
+interface DetailPageProps {
+  source: {uri: string},
+  title: string,
+  sale?: boolean,
+  clarificationBlock: ReactElement,
+  information: string,
+  postTime: string
+}
+
+export const DetailPage = ({ source, title, sale, clarificationBlock, information, postTime }: DetailPageProps) => {
   return (
     <ScrollView contentContainerStyle={detailStyles.wrapper} bounces={false}>
-      <ImageBackground source={image} style={detailStyles.image}>
-        {/*<Image style={detailStyles.saleLabel} source={require("../../../assets/images/sale.png")} />*/}
+      <ImageBackground source={source} style={detailStyles.image}>
+        {sale && <Image style={detailStyles.saleLabel} source={require("../../../assets/images/sale.png")} />}
       </ImageBackground>
       <View style={detailStyles.border}>
         <CustomText styles={[sharedStyles.bigTitle]} text={title}/>
@@ -23,4 +30,4 @@ export const DetailPage = (observer(({ navigation, image, title, sale, clarifica
       </View>
     </ScrollView>
   );
-}));
+};
