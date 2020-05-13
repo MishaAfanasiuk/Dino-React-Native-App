@@ -6,7 +6,7 @@ interface CardBlockProps {
   data: [ReactElement] | []
 }
 
-export const CardBlock = (({ data }: CardBlockProps) => {
+export const CardBlock = ({ data }: CardBlockProps) => {
   return (
     <View style={cardBlockStyles.scrollWrapper}>
       <ScrollView contentContainerStyle={cardBlockStyles.wrapper}>
@@ -16,4 +16,4 @@ export const CardBlock = (({ data }: CardBlockProps) => {
       </ScrollView>
     </View>
   );
-});
+};

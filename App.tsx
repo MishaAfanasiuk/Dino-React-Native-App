@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React from 'react';
 import {HomePage} from "./src/modules/HomePage";
-import {Locations} from "./src/modules/Locations";
 import {loginStore} from './src/store/login';
 import {Provider} from "mobx-react";
 import {menuStore} from "./src/store/menu";
@@ -10,8 +9,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {HeaderBlock} from "./src/modules/shared/Header/header";
 import {HeaderLogo} from "./src/modules/shared/Header/HeaderLogo"
 import {CoinCounter} from "./src/modules/shared/Header/CoinCounter";
-import { Font, AppLoading } from 'expo';
-import {View, Text} from "react-native";
 import { EventPage } from './src/modules/Event'
 import {AboutPage} from "./src/modules/About";
 import {MenuPage} from "./src/modules/Menu";
@@ -20,8 +17,8 @@ import {UserPage} from "./src/modules/UserPage";
 import {blue} from "./src/sharedStyles/styles";
 import {newsStore} from "./src/store/news";
 import {eventStore} from "./src/store/event";
-// import * as Font from 'expo-font';
-// import { Font } from "expo";
+import {MenuItemSubmenu} from "./src/modules/MenuItemSubmenu";
+
 const pageOptions =  {
   headerStyle: {backgroundColor: blue},
   headerTitle: () => <HeaderBlock title={'Dino'} />,
@@ -31,7 +28,7 @@ const pageOptions =  {
 const Stack = createStackNavigator();
 export default function App() {
   return (
-    <Provider login={loginStore} menu={menuStore} newsStore={newsStore} eventStore={eventStore}>
+    <Provider login={loginStore} menuStore={menuStore} newsStore={newsStore} eventStore={eventStore}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -47,6 +44,11 @@ export default function App() {
           <Stack.Screen
             name="Menu"
             component={MenuPage}
+            options={pageOptions}
+          />
+          <Stack.Screen
+            name="MenuItemSubmenu"
+            component={MenuItemSubmenu}
             options={pageOptions}
           />
           <Stack.Screen
