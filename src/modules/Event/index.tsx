@@ -41,7 +41,6 @@ export const EventPage = inject('eventStore')
             />
           )
       }
-      <FooterComponent navigation={navigation}/>
     </View>
   );
 }));

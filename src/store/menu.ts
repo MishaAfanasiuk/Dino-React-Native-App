@@ -2,36 +2,40 @@ import { observable, configure } from "mobx";
 import {DONE, ERROR, NOT_STARTED, PENDING} from "../constants/requestStatuses";
 import {getDiscounts, getMenu} from "../api";
 import { generatorAction } from '../utis/bindDecorator'
+import {hideSpinner, showSpinner} from "./appStore";
+import {invokeErrorModal} from "../utis/invokeErrorModal";
 configure({enforceActions: 'never'});
 
 class Menu {
   @observable menu = [];
   @observable discounts = [];
-  @observable menuLoadingState = NOT_STARTED;
-  @observable discountsLoadingState = NOT_STARTED;
 
 
   getMenu = generatorAction(
     function* () {
-      this.menuLoadingState = PENDING;
+      showSpinner();
       try {
         const {data} = yield getMenu();
-        this.menuLoadingState = DONE;
         this.menu = data;
       } catch (e) {
-        this.menuLoadingState = ERROR;
+        invokeErrorModal(e)
+      }
+      finally {
+        hideSpinner()
       }
     }, this);
 
   getDiscounts = generatorAction(
     function* () {
-      this.menuLoadingState = PENDING;
+      showSpinner()
       try {
         const { data } = yield getDiscounts();
-        this.menuLoadingState = DONE;
         this.discounts = data;
       } catch (e) {
-        this.menuLoadingState = ERROR;
+        invokeErrorModal(e)
+      }
+      finally {
+        hideSpinner()
       }
     }, this)
 };

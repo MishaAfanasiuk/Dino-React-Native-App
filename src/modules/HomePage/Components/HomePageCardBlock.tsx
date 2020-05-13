@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 import { CardBlock } from "../../shared/CardBlock";
 import {HomePageCard} from "./HomePageCard";
 import {getFullImageUrl} from "../../../utis/getImageUrl";
@@ -9,9 +9,9 @@ interface HomePageCardBlockProps {
 }
 
 export const HomePageCardBlock = ({ data }: HomePageCardBlockProps) => {
-  const [cardBlockElements, updateCardBlockElements] = useState<[]>([]);
+  const [cardBlockElements, updateCardBlockElements]: [ReactElement[], Function] = useState([]);
 
-  useEffect<>(() => {
+  useEffect(() => {
     updateCardBlockElements(data.map((item) => (
       <HomePageCard
         source={{uri: getFullImageUrl(item.imageSrc)}}

@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native';
 import {inject, observer} from 'mobx-react';
-import FooterComponent from "../shared/Footer";
 import {sharedStyles} from "../../sharedStyles/styles";
 import {HomePageCardBlock} from "./Components/HomePageCardBlock";
 
-
-export const HomePage = inject('newsStore')(observer(({navigation, newsStore}) => {
+export const HomePage = inject('newsStore')(observer(({newsStore}) => {
   useEffect(() => {
     newsStore.getNews();
   }, [newsStore]);
@@ -15,7 +13,6 @@ export const HomePage = inject('newsStore')(observer(({navigation, newsStore}) =
   return (
     <SafeAreaView style={sharedStyles.scrollBody}>
       <HomePageCardBlock data={news}/>
-      <FooterComponent navigation={navigation}/>
     </SafeAreaView>
   );
 }));

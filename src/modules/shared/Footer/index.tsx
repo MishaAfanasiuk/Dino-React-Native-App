@@ -1,25 +1,29 @@
 import React from "react";
-import {Image, Text, View, Button, TouchableOpacity} from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import {Image, View, TouchableOpacity } from "react-native";
 import {styles} from "./footerStyles";
 
+interface FooterComponentProps {
+  navigate: Function
+}
 
-export const FooterComponent = ({navigation})=>{
+export const FooterComponent = ({ navigate }: FooterComponentProps) => {
 
   return (
     <View style={styles.footer}>
-      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+      <TouchableOpacity onPress={() => navigate("Home")}>
         <Image style={styles.icon} source={require('../../../assets/images/news(1).png')}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("About")}>
+      <TouchableOpacity onPress={() => navigate("About")}>
         <Image style={styles.icon} source={require('../../../assets/images/info.png')}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Sales")}>
+      <TouchableOpacity onPress={() => navigate("Sales")}>
         <Image style={styles.icon} source={require('../../../assets/images/sales.png')}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Menu")}>
+      <TouchableOpacity onPress={() => navigate("Menu")}>
         <Image style={styles.icon} source={require('../../../assets/images/wine-menu.png')}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("UserPage")}>
+      <TouchableOpacity onPress={() => navigate("UserPage")}>
         <Image style={styles.icon} source={require('../../../assets/images/account.png')}/>
       </TouchableOpacity>
     </View>

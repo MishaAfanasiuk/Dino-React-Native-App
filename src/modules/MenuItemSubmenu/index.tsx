@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Image } from 'react-native';
-import FooterComponent from "../shared/Footer";
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CustomText} from "../shared/CustomText";
 import {ASSETS_PATH_LINK} from "../../api/http";
@@ -28,8 +27,6 @@ export const MenuItemSubmenu = ({ route, navigation }) => {
           )
         })
       }
-
-      <FooterComponent navigation={navigation}/>
     </View>
   );
 };

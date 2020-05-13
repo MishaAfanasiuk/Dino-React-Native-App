@@ -2,7 +2,6 @@ import React from 'react';
 import {aboutStyles} from "./aboutStyles";
 import {Image, ImageBackground, SafeAreaView, ScrollView, View} from 'react-native';
 import {inject, observer} from 'mobx-react';
-import FooterComponent from "../shared/Footer";
 import {CustomText} from "../shared/CustomText";
 import {sharedStyles} from "../../sharedStyles/styles"
 import {IconBlock} from "./IconBlock";
@@ -33,7 +32,6 @@ export const AboutPage = (observer(({ navigation }) => {
         <CustomText styles={sharedStyles.infoText} text={sampleText}/>
       </View>
     </ScrollView>
-      <FooterComponent navigation={navigation}/>
     </View>
   );
 }));
