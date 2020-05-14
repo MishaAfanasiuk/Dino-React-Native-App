@@ -18,6 +18,7 @@ import {blue} from "./src/sharedStyles/styles";
 import {newsStore} from "./src/store/news";
 import {eventStore} from "./src/store/event";
 import {MenuItemSubmenu} from "./src/modules/MenuItemSubmenu";
+import {aboutStore} from "./src/store/about";
 
 const pageOptions =  {
   headerStyle: {backgroundColor: blue},
@@ -28,7 +29,7 @@ const pageOptions =  {
 const Stack = createStackNavigator();
 export default function App() {
   return (
-    <Provider login={loginStore} menuStore={menuStore} newsStore={newsStore} eventStore={eventStore}>
+    <Provider login={loginStore} menuStore={menuStore} newsStore={newsStore} eventStore={eventStore} aboutStore={aboutStore}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen

@@ -36,5 +36,27 @@ export const aboutStyles = StyleSheet.create({
   },
   scrollWrapper: {
     alignItems: 'center',
-  }
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  mapStyle: {
+    width: 400,
+    height: 400,
+  },
+  dinoMarker: {
+    bottom: 0,
+    left: 0,
+    height: 45,
+    width: 35,
+  },
+  contacts: {
+    display: 'none',
+  },
+  showContacts: {
+
+  },
 });
