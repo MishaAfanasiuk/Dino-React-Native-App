@@ -22,13 +22,7 @@ const sampleText = 'Most components can be customized ' +
 export const UserPage = (observer(({ navigation}) => {
   return (
     <View style={sharedStyles.scrollBody}>
-      <DetailPage
-        image={image} title={'Jazz Band'}
-        sale
-        clarificationBlock={<EventTime from={'19.03 16:00'} to={'19.03 16:00'}/>}
-        information={sampleText}
-        postTime={'19.03 16:00:56'}
-      />
+
     </View>
   );
 }));
