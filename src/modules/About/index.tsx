@@ -8,6 +8,8 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {IconBlock} from "./IconBlock";
 import {Map} from "./Map";
 const background = require("../../assets/images/cafe_background.jpeg")
+import Dialog, { DialogContent, DialogTitle } from 'react-native-popup-dialog';
+import {ContactsBlock} from "./Contacts";
 const sampleText = 'Most components can be customized ' +
   'when they are created, with different parameters. ' +
   'These created parameters are called props, short for ' +
@@ -30,11 +32,30 @@ export const AboutPage = inject('aboutStore')(observer(({ navigation, aboutStore
         </ImageBackground>
       <View style={aboutStyles.titleBlock}>
         <CustomText styles={sharedStyles.title} text={'Dino\nRrrrestaurant'}/>
-        <IconBlock />
+        <IconBlock/>
       </View>
-      <View style={[aboutStyles.textBlock, displayContact]}>
+      <View style={aboutStyles.textBlock}>
         <CustomText styles={sharedStyles.infoText} text={sampleText}/>
       </View>
+      <Dialog
+        visible={aboutStore.displayMap}
+        onTouchOutside={() => {aboutStore.displayingMap()}}
+      >
+        <DialogContent
+          style={aboutStyles.popup}>
+          <Map/>
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        visible={aboutStore.displayContacts}
+        onTouchOutside={() => {aboutStore.displayingContacts()}}
+        dialogTitle={<DialogTitle title="Contacts" />}
+      >
+        <DialogContent
+          style={aboutStyles.popup}>
+          <ContactsBlock/>
+        </DialogContent>
+      </Dialog>
       </ScrollView>
     </View>
   );

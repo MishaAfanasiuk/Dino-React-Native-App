@@ -11,19 +11,24 @@ export const Map= () => {
   const [location, setLocation] = useState<ILocation | undefined>(undefined);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const {latitude, longitude} = position.coords;
-        setLocation({
-          latitude,
-          longitude,
-        });
-      },
-      error => {
-        console.log(error.code, error.message);
-      },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-    );
+    let mounted = true;
+    if(mounted) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const {latitude, longitude} = position.coords;
+          setLocation({
+            latitude,
+            longitude,
+          });
+        },
+        error => {
+          console.log(error.code, error.message);
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
+    }
+
+    return () => mounted = false;
   }, []);
 
   console.log(location);
