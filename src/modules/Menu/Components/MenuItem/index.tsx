@@ -1,7 +1,8 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-import {TouchableOpacity} from "react-native";
+import {Image, TouchableOpacity} from "react-native";
 import {CustomText} from "../../../shared/CustomText";
+import {menuStyles} from "../../styles";
 
 interface MenuItemProps {
   menuItem: {
@@ -18,8 +19,9 @@ export const MenuItem = ({ menuItem }: MenuItemProps) => {
   };
 
   return (
-    <TouchableOpacity onPress={onItemPress}>
-      <CustomText text={menuItem.name} />
+    <TouchableOpacity style={menuStyles.menuItem} onPress={onItemPress}>
+      <CustomText styles={menuStyles.menuTitle} text={menuItem.name.charAt(0).toUpperCase() + menuItem.name.slice(1)} />
+      <Image style={menuStyles.menuImage} source={require('../../../../assets/images/fish.png')}/>
     </TouchableOpacity>
   )
 };

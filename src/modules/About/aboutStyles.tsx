@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
 import {bordo, lightGreen} from "../../sharedStyles/styles";
 
 export const aboutStyles = StyleSheet.create({
@@ -43,8 +43,8 @@ export const aboutStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   mapStyle: {
-    width: 350,
-    height: 450,
+    width: Dimensions.get('window').width*0.9,
+    height: Dimensions.get('window').height*0.7,
     margin: 0
   },
   dinoMarker: {
@@ -61,7 +61,7 @@ export const aboutStyles = StyleSheet.create({
   },
   contactsBlock: {
     justifyContent: 'center',
-    width: 250,
+    width: Dimensions.get('window').width*0.8,
     marginTop: 15,
     marginBottom: 15
   },

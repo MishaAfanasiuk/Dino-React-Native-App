@@ -11,7 +11,7 @@ interface DetailPageProps {
   sale?: boolean,
   clarificationBlock: ReactElement,
   information: string,
-  postTime: string
+  postTime?: string
 }
 
 export const DetailPage = ({ source, title, sale, clarificationBlock, information, postTime }: DetailPageProps) => {
@@ -26,7 +26,7 @@ export const DetailPage = ({ source, title, sale, clarificationBlock, informatio
       {clarificationBlock}
       <View style={detailStyles.informationBlock}>
         <CustomText styles={[sharedStyles.infoText]} text={information}/>
-        <PostTime date={postTime}/>
+        {(postTime && <PostTime date={postTime}/>)}
       </View>
     </ScrollView>
   );

@@ -7,6 +7,7 @@ import {MenuItemSubmenu} from "../MenuItemSubmenu";
 import {SalesPage} from "../Sales";
 import {UserPage} from "../UserPage";
 import {EventPage} from "../Event";
+import {DishPage} from "../Dish";
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
@@ -64,6 +65,11 @@ const NavigationTabs = () => {
       <Stack.Screen
         name="Event"
         component={EventPage}
+        options={pageOptions}
+      />
+      <Stack.Screen
+        name="Dish"
+        component={DishPage}
         options={pageOptions}
       />
     </Stack.Navigator>
