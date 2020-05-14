@@ -7,7 +7,7 @@ import {sharedStyles} from "../../sharedStyles/styles"
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {IconBlock} from "./IconBlock";
 import {Map} from "./Map";
-const background = require("../../assets/images/cafe_background.jpeg")
+const background = require("../../assets/images/cafe_background.jpeg");
 import Dialog, { DialogContent, DialogTitle } from 'react-native-popup-dialog';
 import {ContactsBlock} from "./Contacts";
 const sampleText = 'Most components can be customized ' +

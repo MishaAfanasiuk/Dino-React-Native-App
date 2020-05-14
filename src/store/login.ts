@@ -1,4 +1,4 @@
-import {observable, configure} from "mobx";
+import {observable, configure, action} from "mobx";
 import {DONE, ERROR, NOT_STARTED, PENDING} from "../constants/requestStatuses";
 import { login, register, getUser } from "../api";
 import {generatorAction} from "../utis/bindDecorator";
@@ -9,6 +9,16 @@ class Login {
   @observable user = {};
   @observable state = NOT_STARTED;
   @observable error = '';
+  @observable displayCard = false;
+  @observable editMode = false;
+
+
+  @action displayingCard = () => {
+    this.displayCard = !this.displayCard;
+  };
+  @action changingEditMode = () => {
+    this.editMode = !this.editMode;
+  };
 
   login = generatorAction(function* ({username, password}) {
       this.state = PENDING;
