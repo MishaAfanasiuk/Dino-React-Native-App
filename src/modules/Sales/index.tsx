@@ -10,7 +10,7 @@ const dataExample = [{image: image}, {image: image}, {image: image}, {image: ima
 
 export const SalesPage = (observer(({ navigation }) => {
   const data: [ReactElement] = dataExample.map(({ image }, index) => {
-    return <Card source={image} sale={false} onPress={() => {}} key={index} />
+    return <Card source={image} sale onPress={() => {}} key={index} />
   });
 
   return (
