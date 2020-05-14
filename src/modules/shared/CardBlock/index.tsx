@@ -3,7 +3,7 @@ import {ScrollView, View} from 'react-native';
 import {cardBlockStyles} from "./cardBlockStyles";
 
 interface CardBlockProps {
-  data: [ReactElement] | []
+  data: ReactElement[] | []
 }
 
 export const CardBlock = ({ data }: CardBlockProps) => {

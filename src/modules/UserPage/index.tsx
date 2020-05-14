@@ -29,7 +29,6 @@ export const UserPage = (observer(({ navigation}) => {
         information={sampleText}
         postTime={'19.03 16:00:56'}
       />
-      <FooterComponent navigation={navigation}/>
     </View>
   );
 }));

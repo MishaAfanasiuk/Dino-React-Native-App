@@ -1,7 +1,14 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {inject, observer} from 'mobx-react';
 import {textStyles} from "./textStyles"
 
-export const CustomText = inject('menuStore')(observer(({ navigation, text, onPress, styles}) =>
-  <Text style={[textStyles.text, styles]} onPress={onPress}>{text}</Text>));
+interface CustomTextProps {
+  text: string,
+  styles?: object
+}
+
+export const CustomText = ({text, styles}: CustomTextProps) => (
+  <Text style={[textStyles.text, styles]}>
+    {text}
+  </Text>
+);

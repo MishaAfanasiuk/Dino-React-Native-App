@@ -2,7 +2,6 @@ import React, {useCallback} from 'react';
 import {aboutStyles} from "../aboutStyles";
 import {Image, ImageBackground, ScrollView, TouchableOpacity, View, Linking} from 'react-native';
 import {inject, observer} from 'mobx-react';
-const img = require("../../../assets/images/facebook.png")
 
 export const IconBlock = inject('aboutStore')(observer(({ navigation, aboutStore}) => {
   return (

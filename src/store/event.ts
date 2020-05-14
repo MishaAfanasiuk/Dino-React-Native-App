@@ -1,33 +1,34 @@
 import { observable, configure } from "mobx";
-import {DONE, NOT_STARTED, PENDING, ERROR, RequestStatuses} from "../constants/requestStatuses";
 import { getEvent } from "../api";
 import { generatorAction } from '../utis/bindDecorator'
 import { Event } from "../sharedInterfaces/eventsInterfaces";
+import {hideSpinner, showSpinner} from "./appStore";
+import {invokeErrorModal} from "../utis/invokeErrorModal";
 
 configure({enforceActions: 'never'});
 
 export interface EventStoreInterface {
   event: Event | null,
   getEvent: Function,
-  state: RequestStatuses
 }
 
 class EventStore implements EventStoreInterface {
   @observable event = null;
-  @observable state: RequestStatuses = NOT_STARTED;
 
   getEvent = generatorAction(
     function* (eventId: string) {
       if (this.event && this.event._id === eventId) {
         return
       }
-      this.state = PENDING;
+      showSpinner();
       try {
         const {data} = yield getEvent(eventId);
-        this.state = DONE;
         this.event = data;
       } catch (e) {
-        this.state = ERROR;
+        invokeErrorModal(e)
+      }
+      finally {
+        hideSpinner()
       }
     }, this);
 };

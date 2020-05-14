@@ -16,7 +16,6 @@ export const SalesPage = (observer(({ navigation }) => {
   return (
     <SafeAreaView style={sharedStyles.scrollBody}>
       <CardBlock data={data} />
-      <FooterComponent navigation={navigation}/>
     </SafeAreaView>
   );
 }));

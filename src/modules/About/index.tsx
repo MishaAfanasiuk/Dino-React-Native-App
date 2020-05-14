@@ -2,7 +2,6 @@ import React, {useState, useEffect, useMemo} from 'react';
 import {aboutStyles} from "./aboutStyles";
 import {Image, ImageBackground, SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
 import {inject, observer} from 'mobx-react';
-import FooterComponent from "../shared/Footer";
 import {CustomText} from "../shared/CustomText";
 import {sharedStyles} from "../../sharedStyles/styles"
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
@@ -37,7 +36,6 @@ export const AboutPage = inject('aboutStore')(observer(({ navigation, aboutStore
         <CustomText styles={sharedStyles.infoText} text={sampleText}/>
       </View>
       </ScrollView>
-      <FooterComponent navigation={navigation}/>
     </View>
   );
 }));
