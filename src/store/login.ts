@@ -1,6 +1,6 @@
 import {observable, configure, action} from "mobx";
 import {DONE, ERROR, NOT_STARTED, PENDING} from "../constants/requestStatuses";
-import { login, register, getUser } from "../api";
+import { login, register, getUser, editUser } from "../api";
 import {generatorAction} from "../utis/bindDecorator";
 import {invokeErrorModal} from "../utis/invokeErrorModal";
 import {hideSpinner, showSpinner} from "./appStore";
@@ -19,6 +19,8 @@ class Login implements Login {
   @observable error = '';
   @observable displayCard = false;
   @observable editMode = false;
+  @observable editEmail = false;
+  @observable editPhone = false;
 
 
   @action displayingCard = () => {
@@ -27,6 +29,22 @@ class Login implements Login {
   @action changingEditMode = () => {
     this.editMode = !this.editMode;
   };
+
+  editUser = generatorAction(async function* ({email, phone}) {
+      showSpinner();
+      try {
+        const { data: user } = yield editUser(this.user._id, {email, phone});
+        this.user = user;
+        this.setTokenToStorage(user.access_token);
+        this.getUserData()
+      } catch (e) {
+        invokeErrorModal(e.toString())
+      }
+      finally {
+        hideSpinner()
+      }
+    }, this
+  );
 
   login = generatorAction(function* ({email, password}) {
     showSpinner();
@@ -78,11 +96,11 @@ class Login implements Login {
     try {
       await AsyncStorage.removeItem('token');
       this.user = null;
+      navigate('Login');
     } catch (e) {
       invokeErrorModal('Can\'t remove token from storage')
     }
   }
-
   getUserData = generatorAction(async function *() {
     try {
       const token = await AsyncStorage.getItem('token');

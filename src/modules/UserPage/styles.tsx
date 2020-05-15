@@ -1,5 +1,5 @@
 import {Dimensions, StyleSheet} from "react-native";
-import {bordo} from "../../sharedStyles/styles";
+import {bordo, green} from "../../sharedStyles/styles";
 
 export const userStyles = StyleSheet.create({
   userpick: {
@@ -70,6 +70,42 @@ export const userStyles = StyleSheet.create({
   userCardTitle: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 20,
+  },
+  buttonBlock: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingTop: 30,
+  },
+  button: {
+    width:Dimensions.get("window").width*0.32,
+    borderWidth: 2,
+    borderColor: 'black',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderRadius: 15,
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize:25,
+    color: 'black',
+    textAlign: 'center'
+  },
+  green: {
+    backgroundColor: green,
+    opacity: 0.8
+  },
+  red: {
+    backgroundColor: bordo,
+    opacity: 0.6
+  },
+  logout: {
+    width:Dimensions.get("window").width*0.35,
+    paddingTop: 7,
+    paddingBottom: 7,
+    paddingLeft: 15,
+    paddingRight: 15,
   }
 });

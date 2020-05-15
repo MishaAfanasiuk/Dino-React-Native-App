@@ -11,12 +11,14 @@ export const register = (data): Promise<AxiosResponse> => {
 };
 
 export const getUser = async (token: string): Promise<AxiosResponse> => {
+  console.log(token)
   return get(`/user`, {headers: {Authorization: `Bearer ${token}`}})
 };
 
-// export const editUser = (userId: string): Promise<any> => {
-//   return put(`/events/${userId}`)
-// };
+export const editUser = (userId: string, data): Promise<any> => {
+  console.log(data.email)
+  return put(`/user/${userId}`, data)
+};
 
 export const getEvent = (eventId: string): Promise<any> => {
   return get(`/events/${eventId}`)
