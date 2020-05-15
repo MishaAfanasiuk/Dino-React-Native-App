@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {inject, observer} from 'mobx-react';
-import FooterComponent from "../shared/Footer";
 import {sharedStyles} from "../../sharedStyles/styles";
 import {DetailPage} from "../shared/DetailPage";
 import {EventTime} from "../shared/EventTimeBlock";
 import {EventStoreInterface} from "../../store/event";
 import {getFullImageUrl} from "../../utis/getImageUrl";
 import {parseTime} from "../../utis/parseTime";
-import {CustomText} from "../shared/CustomText";
 
 interface SalesPageProps {
   eventStore: EventStoreInterface,

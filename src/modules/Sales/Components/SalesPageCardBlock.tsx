@@ -23,7 +23,7 @@ export const SalesPageCardBlock = ({ data }: HomePageCardBlockProps) => {
   useEffect(() => {
     updateCardBlockElements(data.map((item) => (
       <SalesPageCard
-        source={{uri: getFullImageUrl(item.posterImageSrc)}}
+        source={{uri: getFullImageUrl(item.posterImageSrc), cache: 'force-cache'}}
         eventId={item._id}
         key={item._id}
       />

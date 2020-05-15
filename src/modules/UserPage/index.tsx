@@ -13,16 +13,9 @@ import {inject, observer} from 'mobx-react';
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CustomText} from "../shared/CustomText";
 import Dialog, { DialogContent, SlideAnimation } from 'react-native-popup-dialog';
-const user = {
-  "_id": "11111111111",
-  "firstName": "John",
-  "lastName": "Smith",
-  "email": "john.smith@mail.com",
-  "phone": "+389597567467",
-  "coins": 25
-}
 
 export const UserPage = inject('loginStore')(observer(({ navigation, loginStore}) => {
+  const user = loginStore.user;
   useEffect(() => {
     if (!loginStore.user)
       navigation.navigate('Login')

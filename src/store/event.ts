@@ -7,7 +7,7 @@ import {invokeErrorModal} from "../utis/invokeErrorModal";
 interface Sale {
   _id: string,
   title: string,
-  descriptions: string,
+  description: string,
   imageSrc: string,
   startDate: string,
   endDate: string,
