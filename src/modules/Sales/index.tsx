@@ -1,21 +1,22 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import {SafeAreaView} from 'react-native';
-import {observer} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import FooterComponent from "../shared/Footer";
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CardBlock} from "../shared/CardBlock";
 import {Card} from "../shared/CardBlock/Card";
-const image = require("../../assets/images/happyHours.jpg");
-const dataExample = [{image: image}, {image: image}, {image: image}, {image: image}, {image: image}, {image: image}];
+import {SalesPageCardBlock} from "./Components/SalesPageCardBlock";
 
-export const SalesPage = (observer(({ navigation }) => {
-  const data: [ReactElement] = dataExample.map(({ image }, index) => {
-    return <Card source={image} sale={false} onPress={() => {}} key={index} />
-  });
+export const SalesPage = inject('newsStore')(observer(({newsStore}) => {
+  useEffect(() => {
+    newsStore.getSales();
+  }, [newsStore]);
+
+  const {sales} = newsStore;
 
   return (
     <SafeAreaView style={sharedStyles.scrollBody}>
-      <CardBlock data={data} />
+      <SalesPageCardBlock data={sales} />
     </SafeAreaView>
   );
 }));

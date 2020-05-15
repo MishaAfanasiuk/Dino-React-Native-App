@@ -17,7 +17,6 @@ export const MenuPage = inject('menuStore')(observer(({ navigation, menuStore })
           return <MenuItem menuItem={{name: key, items: menuStore.menu[key]}} key={key} />
         })
       }
-      <CustomText text={'Menu'} />
     </View>
   );
 }));

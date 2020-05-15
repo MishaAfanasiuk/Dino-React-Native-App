@@ -20,7 +20,6 @@ export const detailStyles = StyleSheet.create({
   informationBlock: {
     width: '90%',
     alignContent: 'center',
-    marginBottom: 70,
   },
   saleLabel: {
     width: 85,

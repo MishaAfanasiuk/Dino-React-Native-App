@@ -18,7 +18,7 @@ export const sharedStyles = StyleSheet.create({
   },
   bigTitle: {
     textAlign: 'center',
-    fontSize: 50,
+    fontSize: 40,
     fontWeight: 'bold',
   },
   infoText: {

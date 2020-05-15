@@ -8,6 +8,7 @@ import {SalesPage} from "../Sales";
 import {UserPage} from "../UserPage";
 import {EventPage} from "../Event";
 import React, {useEffect} from "react";
+import {DishPage} from "../Dish";
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import {blue} from "../../sharedStyles/styles";
@@ -15,10 +16,10 @@ import {HeaderBlock} from "../shared/Header/header";
 import {HeaderLogo} from "../shared/Header/HeaderLogo";
 import {CoinCounter} from "../shared/Header/CoinCounter";
 import {ActivityIndicator, View} from "react-native";
+import {DiscountPage} from "../Discount";
 import {LoginPage} from "../Login";
 import {RegistrationPage} from "../Registration";
 import {loginStore} from "../../store/login";
-import {invokeErrorModal} from "../../utis/invokeErrorModal";
 
 const Stack = createStackNavigator();
 const pageOptions = {
@@ -79,6 +80,16 @@ const NavigationTabs = () => {
       <Stack.Screen
         name={'Register'}
         component={RegistrationPage}
+        options={pageOptions}
+      />
+      <Stack.Screen
+        name="Dish"
+        component={DishPage}
+        options={pageOptions}
+      />
+      <Stack.Screen
+        name="Discount"
+        component={DiscountPage}
         options={pageOptions}
       />
     </Stack.Navigator>

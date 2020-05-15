@@ -17,6 +17,16 @@ class Login implements Login {
   @observable user = null;
   @observable state = NOT_STARTED;
   @observable error = '';
+  @observable displayCard = false;
+  @observable editMode = false;
+
+
+  @action displayingCard = () => {
+    this.displayCard = !this.displayCard;
+  };
+  @action changingEditMode = () => {
+    this.editMode = !this.editMode;
+  };
 
   login = generatorAction(function* ({email, password}) {
     showSpinner();

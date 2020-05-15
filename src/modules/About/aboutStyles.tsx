@@ -1,5 +1,5 @@
-import {StyleSheet} from "react-native";
-import {bordo} from "../../sharedStyles/styles";
+import {Dimensions, StyleSheet} from "react-native";
+import {bordo, lightGreen} from "../../sharedStyles/styles";
 
 export const aboutStyles = StyleSheet.create({
   background: {
@@ -32,9 +32,42 @@ export const aboutStyles = StyleSheet.create({
   },
   textBlock: {
     margin: 15,
-    marginBottom: 70,
   },
   scrollWrapper: {
     alignItems: 'center',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  mapStyle: {
+    width: Dimensions.get('window').width*0.9,
+    height: Dimensions.get('window').height*0.7,
+    margin: 0
+  },
+  dinoMarker: {
+    bottom: 0,
+    left: 0,
+    height: 45,
+    width: 35,
+  },
+  popup: {
+    backgroundColor: lightGreen,
+    paddingBottom: 0,
+    paddingRight: 0,
+    paddingLeft: 0,
+  },
+  contactsBlock: {
+    justifyContent: 'center',
+    width: Dimensions.get('window').width*0.8,
+    marginTop: 15,
+    marginBottom: 15
+  },
+  phone: {
+    fontSize: 20,
+    margin: 7,
+    textAlign: 'center',
   }
 });

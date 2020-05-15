@@ -1,41 +1,105 @@
-import React, {useEffect} from 'react';
-import {homeStyles} from "./styles";
-import {Button, Text, View} from 'react-native';
+import React, {useMemo, useEffect} from 'react';
+import {userStyles} from "./styles";
+import {
+  Image,
+  ImageBackground,
+  Keyboard,
+  KeyboardAvoidingView, Platform,
+  TextInput,
+  TouchableOpacity, TouchableWithoutFeedback,
+  View
+} from 'react-native';
 import {inject, observer} from 'mobx-react';
-import FooterComponent from "../shared/Footer";
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CustomText} from "../shared/CustomText";
-import {DetailPage} from "../shared/DetailPage";
-import {EventTime} from "../shared/EventTimeBlock";
-import {loginStore} from "../../store/login";
-const image = require("../../assets/images/happyHours.jpg");
-const sampleText = 'Most components can be customized ' +
-  'when they are created, with different parameters. ' +
-  'These created parameters are called props, short for ' +
-  'properties. For example, one basic React Native component ' +
-  'is the Image. When you create an image, you can use a prop ' +
-  'named source to control what image it shows.Most components can ' +
-  'be customized when they are created, with different parameters. These ' +
-  'created parameters are called props, short for properties.'+
-  'For example, one basic React Native component is the Image. When ' +
-  'you create an image, you can use a prop named source to control what image it shows.';
+import Dialog, { DialogContent, SlideAnimation } from 'react-native-popup-dialog';
+const user = {
+  "_id": "11111111111",
+  "firstName": "John",
+  "lastName": "Smith",
+  "email": "john.smith@mail.com",
+  "phone": "+389597567467",
+  "coins": 25
+}
 
-export const UserPage = inject('loginStore')(observer(({ navigation}) => {
+export const UserPage = inject('loginStore')(observer(({ navigation, loginStore}) => {
   useEffect(() => {
     if (!loginStore.user)
-    navigation.navigate('Login')
+      navigation.navigate('Login')
   }, [loginStore]);
 
+  const editMode = useMemo(() => loginStore.editMode, [loginStore.editMode]);
+  const [emailValue, onChangeEmail] = React.useState('user.email');
+  const [phoneValue, onChangePhone] = React.useState(user.phone);
   return (
-    <View style={sharedStyles.scrollBody}>
-      <DetailPage
-        image={image}
-        title={'Jazz Band'}
-        sale
-        clarificationBlock={<EventTime from={'19.03 16:00'} to={'19.03 16:00'}/>}
-        information={sampleText}
-        postTime={'19.03 16:00:56'}
-      />
+    <View style={sharedStyles.body}>
+      <ImageBackground style={userStyles.userpick} source={require('../../assets/images/account.png')}>
+        <TouchableOpacity style={userStyles.editIconWrap} onPress={loginStore.changingEditMode}>
+          <Image style={userStyles.editIcon} source={require('../../assets/images/edit.png')}/>
+        </TouchableOpacity>
+      </ImageBackground>
+      {(!editMode && <>
+            <CustomText styles={sharedStyles.title} text={`${user.firstName} ${user.lastName}`} />
+            <CustomText styles={sharedStyles.infoText} text={`${user._id}`} />
+            <View style={userStyles.coinBlock}>
+              <Image style={userStyles.countImg} source={require('../../assets/images/price-tag.png')}/>
+              <CustomText text={`${user.coins} coins`} styles={sharedStyles.title} />
+            </View>
+            </>
+      )}
+
+      {(editMode ?
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+          >
+            <View style={userStyles.userInfoBlock}>
+              <CustomText styles={userStyles.userInfoTitle} text={'email'}/>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <TextInput
+                style={{ height: 40, fontSize: 25}}
+                value={emailValue}
+                onChangeText={text => onChangeEmail(text)}
+              />
+            </TouchableWithoutFeedback></View>
+            <View style={userStyles.userInfoBlock}>
+              <CustomText styles={userStyles.userInfoTitle} text={'phone'}/>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <TextInput
+                style={{ height: 40, fontSize: 25}}
+                value={phoneValue}
+                onChangeText={text => onChangePhone(text)}
+              />
+            </TouchableWithoutFeedback></View>
+          </KeyboardAvoidingView>
+          :
+        <View>
+          <View style={userStyles.userInfoBlock}>
+            <CustomText styles={userStyles.userInfoTitle} text={'email'}/>
+            <CustomText styles={userStyles.userInfoValue} text={user.email}/>
+          </View>
+          <View style={userStyles.userInfoBlock}>
+          <CustomText styles={userStyles.userInfoTitle} text={'phone'}/>
+          <CustomText styles={userStyles.userInfoValue} text={user.phone}/>
+          </View>
+          <TouchableOpacity style={userStyles.userCard} onPress={loginStore.displayingCard}>
+          <CustomText styles={userStyles.userCardTitle} text={'Your card'}/>
+          <Image style={userStyles.userCardQR} source={require('../../assets/images/qrEx.png')}/>
+          </TouchableOpacity>
+        </View>
+      )}
+      <Dialog
+        visible={loginStore.displayCard}
+        onTouchOutside={() => {loginStore.displayingCard()}}
+        dialogAnimation={new SlideAnimation({
+          slideFrom: 'bottom',
+        })}
+      >
+        <DialogContent>
+          <CustomText styles={userStyles.userCardTitle} text={'Your card'}/>
+        <Image style={userStyles.userCardQR} source={require('../../assets/images/qrEx.png')}/>
+          <CustomText styles={userStyles.userCardTitle} text={user._id}/>
+        </DialogContent>
+      </Dialog>
     </View>
   );
 }));
