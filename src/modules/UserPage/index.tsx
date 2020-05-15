@@ -67,6 +67,18 @@ export const UserPage = inject('login')(observer(({ navigation, login}) => {
                 onChangeText={text => onChangePhone(text)}
               />
             </TouchableWithoutFeedback></View>
+            <View style={userStyles.buttonBlock}>
+              <TouchableOpacity style={[userStyles.button, userStyles.red]}>
+                <CustomText styles={userStyles.buttonText} text={'Cancel'}/>
+              </TouchableOpacity>
+              <TouchableOpacity style={[userStyles.button, userStyles.green]}>
+                <CustomText styles={userStyles.buttonText} text={'Save'}/>
+              </TouchableOpacity>
+            </View>
+            <View style={userStyles.buttonBlock}>
+            <TouchableOpacity style={[userStyles.button, userStyles.logout]}>
+              <CustomText styles={userStyles.buttonText} text={'Log out'}/>
+            </TouchableOpacity></View>
           </KeyboardAvoidingView>
           :
         <View>
@@ -79,8 +91,8 @@ export const UserPage = inject('login')(observer(({ navigation, login}) => {
           <CustomText styles={userStyles.userInfoValue} text={user.phone}/>
           </View>
           <TouchableOpacity style={userStyles.userCard} onPress={login.displayingCard}>
-          <CustomText styles={userStyles.userCardTitle} text={'Your card'}/>
-          <Image style={userStyles.userCardQR} source={require('../../assets/images/qrEx.png')}/>
+            <CustomText styles={userStyles.userCardTitle} text={'Your card'}/>
+            <Image style={userStyles.userCardQR} source={require('../../assets/images/qrEx.png')}/>
           </TouchableOpacity>
         </View>
       )}
