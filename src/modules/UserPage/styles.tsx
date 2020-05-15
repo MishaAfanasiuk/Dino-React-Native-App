@@ -70,7 +70,7 @@ export const userStyles = StyleSheet.create({
   userCardTitle: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 20,
   },
   buttonBlock: {
     flexDirection: 'row',

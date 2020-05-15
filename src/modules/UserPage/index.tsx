@@ -1,11 +1,10 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useEffect, useState} from 'react';
 import {userStyles} from "./styles";
 import {
-  Button,
   Image,
   ImageBackground,
   Keyboard,
-  KeyboardAvoidingView, Platform, ScrollView,
+  KeyboardAvoidingView, Platform,
   TextInput,
   TouchableOpacity, TouchableWithoutFeedback,
   View
@@ -14,24 +13,28 @@ import {inject, observer} from 'mobx-react';
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CustomText} from "../shared/CustomText";
 import Dialog, { DialogContent, SlideAnimation } from 'react-native-popup-dialog';
-import {aboutStyles} from "../About/aboutStyles";
-const user = {
-  "_id": "11111111111",
-  "firstName": "John",
-  "lastName": "Smith",
-  "email": "john.smith@mail.com",
-  "phone": "+389597567467",
-  "coins": 25
-}
+import {LoginInput} from "../shared/Login/Input";
 
-export const UserPage = inject('login')(observer(({ navigation, login}) => {
-  const editMode = useMemo(() => login.editMode, [login.editMode]);
-  const [emailValue, onChangeEmail] = React.useState('user.email');
-  const [phoneValue, onChangePhone] = React.useState(user.phone);
+export const UserPage = inject('loginStore')(observer(({ navigation, loginStore}) => {
+  const user = loginStore.user;
+  useEffect(() => {
+    if (!loginStore.user)
+      navigation.navigate('Login')
+  }, [loginStore]);
+
+  const editMode = useMemo(() => loginStore.editMode, [loginStore.editMode]);
+
+  const [state, setState] = useState({email: user.email, phone: user.phone});
+  const handleEmailChange = (email) => {
+    setState({...state, email})
+  };
+  const handlePhoneChange = (phone) => {
+    setState({...state, phone})
+  };
   return (
     <View style={sharedStyles.body}>
       <ImageBackground style={userStyles.userpick} source={require('../../assets/images/account.png')}>
-        <TouchableOpacity style={userStyles.editIconWrap} onPress={login.changingEditMode}>
+        <TouchableOpacity style={userStyles.editIconWrap} onPress={loginStore.changingEditMode}>
           <Image style={userStyles.editIcon} source={require('../../assets/images/edit.png')}/>
         </TouchableOpacity>
       </ImageBackground>
@@ -54,8 +57,8 @@ export const UserPage = inject('login')(observer(({ navigation, login}) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <TextInput
                 style={{ height: 40, fontSize: 25}}
-                value={emailValue}
-                onChangeText={text => onChangeEmail(text)}
+                value={state.email}
+                onChangeText={handleEmailChange}
               />
             </TouchableWithoutFeedback></View>
             <View style={userStyles.userInfoBlock}>
@@ -63,20 +66,20 @@ export const UserPage = inject('login')(observer(({ navigation, login}) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <TextInput
                 style={{ height: 40, fontSize: 25}}
-                value={phoneValue}
-                onChangeText={text => onChangePhone(text)}
+                value={state.phone}
+                onChangeText={handlePhoneChange}
               />
             </TouchableWithoutFeedback></View>
             <View style={userStyles.buttonBlock}>
-              <TouchableOpacity style={[userStyles.button, userStyles.red]}>
+              <TouchableOpacity style={[userStyles.button, userStyles.red]} onPress={loginStore.changingEditMode}>
                 <CustomText styles={userStyles.buttonText} text={'Cancel'}/>
               </TouchableOpacity>
-              <TouchableOpacity style={[userStyles.button, userStyles.green]}>
+              <TouchableOpacity style={[userStyles.button, userStyles.green]} onPress={() => loginStore.editUser(state)}>
                 <CustomText styles={userStyles.buttonText} text={'Save'}/>
               </TouchableOpacity>
             </View>
             <View style={userStyles.buttonBlock}>
-            <TouchableOpacity style={[userStyles.button, userStyles.logout]}>
+            <TouchableOpacity style={[userStyles.button, userStyles.logout]} onPress={loginStore.logout}>
               <CustomText styles={userStyles.buttonText} text={'Log out'}/>
             </TouchableOpacity></View>
           </KeyboardAvoidingView>
@@ -90,15 +93,15 @@ export const UserPage = inject('login')(observer(({ navigation, login}) => {
           <CustomText styles={userStyles.userInfoTitle} text={'phone'}/>
           <CustomText styles={userStyles.userInfoValue} text={user.phone}/>
           </View>
-          <TouchableOpacity style={userStyles.userCard} onPress={login.displayingCard}>
+          <TouchableOpacity style={userStyles.userCard} onPress={loginStore.displayingCard}>
             <CustomText styles={userStyles.userCardTitle} text={'Your card'}/>
             <Image style={userStyles.userCardQR} source={require('../../assets/images/qrEx.png')}/>
           </TouchableOpacity>
         </View>
       )}
       <Dialog
-        visible={login.displayCard}
-        onTouchOutside={() => {login.displayingCard()}}
+        visible={loginStore.displayCard}
+        onTouchOutside={() => {loginStore.displayingCard()}}
         dialogAnimation={new SlideAnimation({
           slideFrom: 'bottom',
         })}

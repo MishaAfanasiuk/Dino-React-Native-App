@@ -7,8 +7,8 @@ import {MenuItemSubmenu} from "../MenuItemSubmenu";
 import {SalesPage} from "../Sales";
 import {UserPage} from "../UserPage";
 import {EventPage} from "../Event";
+import React, {useEffect} from "react";
 import {DishPage} from "../Dish";
-import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import {blue} from "../../sharedStyles/styles";
@@ -17,6 +17,9 @@ import {HeaderLogo} from "../shared/Header/HeaderLogo";
 import {CoinCounter} from "../shared/Header/CoinCounter";
 import {ActivityIndicator, View} from "react-native";
 import {DiscountPage} from "../Discount";
+import {LoginPage} from "../Login";
+import {RegistrationPage} from "../Registration";
+import {loginStore} from "../../store/login";
 
 const Stack = createStackNavigator();
 const pageOptions = {
@@ -28,6 +31,7 @@ const pageOptions = {
 
 interface RouterProps {
   appStore?: any;
+  loginStore?: any
 }
 
 const NavigationTabs = () => {
@@ -69,6 +73,16 @@ const NavigationTabs = () => {
         options={pageOptions}
       />
       <Stack.Screen
+        name={'Login'}
+        component={LoginPage}
+        options={pageOptions}
+      />
+      <Stack.Screen
+        name={'Register'}
+        component={RegistrationPage}
+        options={pageOptions}
+      />
+      <Stack.Screen
         name="Dish"
         component={DishPage}
         options={pageOptions}
@@ -106,13 +120,17 @@ const Spinner = () => {
   )
 };
 
-export const Router = inject('appStore')(observer(({appStore}: RouterProps) => {
+
+export const Router = inject('appStore', 'loginStore')(observer(({appStore, loginStore}: RouterProps) => {
   const {isLoading} = appStore;
+  useEffect(() => {
+    loginStore.getUserData();
+  }, []);
 
   return (
     <NavigationContainer ref={navigationRef}>
       {
-        isLoading ? <Spinner /> : null
+        isLoading ? <Spinner/> : null
       }
       <NavigationTabs/>
     </NavigationContainer>

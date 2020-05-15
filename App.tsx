@@ -5,7 +5,6 @@ import {Provider} from "mobx-react";
 import {menuStore} from "./src/store/menu";
 import {newsStore} from "./src/store/news";
 import {eventStore} from "./src/store/event";
-import {MenuItemSubmenu} from "./src/modules/MenuItemSubmenu";
 import {aboutStore} from "./src/store/about";
 import { View } from 'react-native';
 import FooterComponent from "./src/modules/shared/Footer";
@@ -17,7 +16,7 @@ export default function App() {
   return (
     <View style={{display: 'flex', width: '100%', height: '100%'}}>
       <View style={{height: '100%', paddingBottom: 60}}>
-        <Provider appStore={appStore} login={loginStore} menuStore={menuStore} newsStore={newsStore} eventStore={eventStore} aboutStore={aboutStore}>
+        <Provider appStore={appStore} loginStore={loginStore} menuStore={menuStore} newsStore={newsStore} eventStore={eventStore} aboutStore={aboutStore}>
           <Router />
         </Provider>
       </View>

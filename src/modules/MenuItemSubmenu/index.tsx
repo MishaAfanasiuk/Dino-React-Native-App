@@ -16,11 +16,20 @@ export const MenuItemSubmenu = ({ route, navigation }) => {
   const onItemPress = (item) => {
     navigation.navigate('Dish', { item })
   };
+  const findUrl = () => {
+    if(menuItem.name === 'salad') {
+      return require("../../assets/images/salad.png");
+    } else if(menuItem.name === 'desert') {
+      return require("../../assets/images/desert.png");
+    } else if(menuItem.name === 'soup') {
+      return require("../../assets/images/soup.png");
+    }
+  };
   return (
     <ScrollView contentContainerStyle={sharedStyles.body} bounces={false}>
       <View style={menuStyles.menuItem} >
         <CustomText styles={menuStyles.menuTitle} text={name.charAt(0).toUpperCase() + name.slice(1)} />
-        <Image style={menuStyles.menuImage} source={require('../../assets/images/fish.png')}/>
+        <Image style={menuStyles.menuImage} source={findUrl()}/>
       </View>
 
       {

@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Card } from "../../shared/CardBlock/Card";
 
 interface HomePageCardProps {
-  source: {uri: string},
+  source: {uri: string, cache: string},
   eventId: string
 }
 

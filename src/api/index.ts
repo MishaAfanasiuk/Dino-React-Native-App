@@ -1,21 +1,24 @@
 import {post, get, put} from './http';
 import {AxiosResponse} from "axios";
+import {AsyncStorage} from "react-native";
 
 export const login = (data) => {
-  return post('/login', data)
+  return post('/auth/login', data)
 };
 
 export const register = (data): Promise<AxiosResponse> => {
-  return post('/register', data)
+  return post('/auth/register', data)
 };
 
-export const getUser = (): Promise<AxiosResponse> => {
-  return get(`/user`)
+export const getUser = async (token: string): Promise<AxiosResponse> => {
+  console.log(token)
+  return get(`/user`, {headers: {Authorization: `Bearer ${token}`}})
 };
 
-// export const editUser = (userId: string): Promise<any> => {
-//   return put(`/events/${userId}`)
-// };
+export const editUser = (userId: string, data): Promise<any> => {
+  console.log(data.email)
+  return put(`/user/${userId}`, data)
+};
 
 export const getEvent = (eventId: string): Promise<any> => {
   return get(`/events/${eventId}`)

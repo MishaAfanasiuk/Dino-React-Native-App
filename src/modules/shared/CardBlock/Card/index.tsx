@@ -19,7 +19,7 @@ export const Card = ({image, source, sale, onPress}: CardProps) => {
           style={cardStyles.image}
         >
           {
-            sale && <Image style={cardStyles.saleLabel} source={require("../../../../assets/images/sale.png")}/>
+            sale && <Image style={cardStyles.saleLabel} source={require("../../../../assets/images/sale.png")} />
           }
         </ImageBackground>
       </TouchableOpacity>
