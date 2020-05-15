@@ -1,14 +1,21 @@
 import React from "react";
-import { useNavigation } from '@react-navigation/native';
 import {Image, View, TouchableOpacity } from "react-native";
 import {styles} from "./footerStyles";
+import {loginStore} from "../../../store/login";
 
 interface FooterComponentProps {
   navigate: Function
 }
 
 export const FooterComponent = ({ navigate }: FooterComponentProps) => {
+  const onUserPagePress = () => {
+    const { user } = loginStore;
+    if (!user) {
+      return navigate('Login')
+    }
 
+    navigate('UserPage')
+  };
   return (
     <View style={styles.footer}>
       <TouchableOpacity onPress={() => navigate("Home")}>
@@ -23,7 +30,7 @@ export const FooterComponent = ({ navigate }: FooterComponentProps) => {
       <TouchableOpacity onPress={() => navigate("Menu")}>
         <Image style={styles.icon} source={require('../../../assets/images/wine-menu.png')}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigate("UserPage")}>
+      <TouchableOpacity onPress={onUserPagePress}>
         <Image style={styles.icon} source={require('../../../assets/images/account.png')}/>
       </TouchableOpacity>
     </View>

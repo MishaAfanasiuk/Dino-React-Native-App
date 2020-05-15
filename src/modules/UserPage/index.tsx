@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {homeStyles} from "./styles";
 import {Button, Text, View} from 'react-native';
-import {observer} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import FooterComponent from "../shared/Footer";
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CustomText} from "../shared/CustomText";
 import {DetailPage} from "../shared/DetailPage";
 import {EventTime} from "../shared/EventTimeBlock";
+import {loginStore} from "../../store/login";
 const image = require("../../assets/images/happyHours.jpg");
 const sampleText = 'Most components can be customized ' +
   'when they are created, with different parameters. ' +
@@ -17,13 +18,19 @@ const sampleText = 'Most components can be customized ' +
   'be customized when they are created, with different parameters. These ' +
   'created parameters are called props, short for properties.'+
   'For example, one basic React Native component is the Image. When ' +
-  'you create an image, you can use a prop named source to control what image it shows.'
+  'you create an image, you can use a prop named source to control what image it shows.';
 
-export const UserPage = (observer(({ navigation}) => {
+export const UserPage = inject('loginStore')(observer(({ navigation}) => {
+  useEffect(() => {
+    if (!loginStore.user)
+    navigation.navigate('Login')
+  }, [loginStore]);
+
   return (
     <View style={sharedStyles.scrollBody}>
       <DetailPage
-        image={image} title={'Jazz Band'}
+        image={image}
+        title={'Jazz Band'}
         sale
         clarificationBlock={<EventTime from={'19.03 16:00'} to={'19.03 16:00'}/>}
         information={sampleText}

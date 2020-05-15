@@ -15,7 +15,7 @@ export default function App() {
   return (
     <View style={{display: 'flex', width: '100%', height: '100%'}}>
       <View style={{height: '100%', paddingBottom: 60}}>
-        <Provider appStore={appStore} login={loginStore} menuStore={menuStore} newsStore={newsStore} eventStore={eventStore}>
+        <Provider appStore={appStore} loginStore={loginStore} menuStore={menuStore} newsStore={newsStore} eventStore={eventStore}>
           <Router />
         </Provider>
       </View>

@@ -2,7 +2,9 @@ import {StyleSheet} from "react-native";
 export const lightGreen = '#F0FDF6';
 export const green = '#99F4C3';
 export const blue = '#99D9F4';
-export const bordo = '#8C0B0B'
+export const bordo = '#8C0B0B';
+export const black = '#333333';
+export const white = '#ffffff';
 
 export const sharedStyles = StyleSheet.create({
   body: {
