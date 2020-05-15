@@ -16,6 +16,7 @@ import {HeaderBlock} from "../shared/Header/header";
 import {HeaderLogo} from "../shared/Header/HeaderLogo";
 import {CoinCounter} from "../shared/Header/CoinCounter";
 import {ActivityIndicator, View} from "react-native";
+import {DiscountPage} from "../Discount";
 
 const Stack = createStackNavigator();
 const pageOptions = {
@@ -70,6 +71,11 @@ const NavigationTabs = () => {
       <Stack.Screen
         name="Dish"
         component={DishPage}
+        options={pageOptions}
+      />
+      <Stack.Screen
+        name="Discount"
+        component={DiscountPage}
         options={pageOptions}
       />
     </Stack.Navigator>

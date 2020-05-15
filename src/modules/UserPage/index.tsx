@@ -1,6 +1,15 @@
 import React, {useMemo, useState} from 'react';
 import {userStyles} from "./styles";
-import {Button, Image, ImageBackground, Keyboard, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Button,
+  Image,
+  ImageBackground,
+  Keyboard,
+  KeyboardAvoidingView, Platform, ScrollView,
+  TextInput,
+  TouchableOpacity, TouchableWithoutFeedback,
+  View
+} from 'react-native';
 import {inject, observer} from 'mobx-react';
 import {sharedStyles} from "../../sharedStyles/styles";
 import {CustomText} from "../shared/CustomText";
@@ -26,33 +35,39 @@ export const UserPage = inject('login')(observer(({ navigation, login}) => {
           <Image style={userStyles.editIcon} source={require('../../assets/images/edit.png')}/>
         </TouchableOpacity>
       </ImageBackground>
-      <CustomText styles={sharedStyles.title} text={`${user.firstName} ${user.lastName}`} />
-      <CustomText styles={sharedStyles.infoText} text={`${user._id}`} />
-      <View style={userStyles.coinBlock}>
-        <Image style={userStyles.countImg} source={require('../../assets/images/price-tag.png')}/>
-        <CustomText text={`${user.coins} coins`} styles={sharedStyles.title} />
-      </View>
+      {(!editMode && <>
+            <CustomText styles={sharedStyles.title} text={`${user.firstName} ${user.lastName}`} />
+            <CustomText styles={sharedStyles.infoText} text={`${user._id}`} />
+            <View style={userStyles.coinBlock}>
+              <Image style={userStyles.countImg} source={require('../../assets/images/price-tag.png')}/>
+              <CustomText text={`${user.coins} coins`} styles={sharedStyles.title} />
+            </View>
+            </>
+      )}
+
       {(editMode ?
-          <View>
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+          >
             <View style={userStyles.userInfoBlock}>
               <CustomText styles={userStyles.userInfoTitle} text={'email'}/>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <TextInput
                 style={{ height: 40, fontSize: 25}}
                 value={emailValue}
                 onChangeText={text => onChangeEmail(text)}
-                onBlur={Keyboard.dismiss}
               />
-            </View>
+            </TouchableWithoutFeedback></View>
             <View style={userStyles.userInfoBlock}>
               <CustomText styles={userStyles.userInfoTitle} text={'phone'}/>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <TextInput
                 style={{ height: 40, fontSize: 25}}
                 value={phoneValue}
                 onChangeText={text => onChangePhone(text)}
-                onBlur={Keyboard.dismiss}
               />
-            </View>
-          </View>
+            </TouchableWithoutFeedback></View>
+          </KeyboardAvoidingView>
           :
         <View>
           <View style={userStyles.userInfoBlock}>

@@ -1,4 +1,4 @@
-import {post, get} from './http';
+import {post, get, put} from './http';
 import {AxiosResponse} from "axios";
 
 export const login = (data) => {
@@ -13,6 +13,10 @@ export const getUser = (): Promise<AxiosResponse> => {
   return get(`/user`)
 };
 
+// export const editUser = (userId: string): Promise<any> => {
+//   return put(`/events/${userId}`)
+// };
+
 export const getEvent = (eventId: string): Promise<any> => {
   return get(`/events/${eventId}`)
 };
@@ -25,8 +29,11 @@ export const getMenu = (): Promise<any> => {
   return get('/menu')
 };
 
-export const getDiscounts = (): Promise<AxiosResponse> => {
-  return get('/menu/discounts')
+export const getDiscount = (eventId: string): Promise<any> => {
+  return get(`/discounts/${eventId}`)
+};
+export const getDiscounts = (): Promise<any> => {
+  return get(`/discounts`)
 };
 
 export const getPlaces = (): Promise<AxiosResponse> => {
