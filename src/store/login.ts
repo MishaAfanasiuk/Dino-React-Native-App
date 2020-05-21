@@ -101,6 +101,7 @@ class Login implements Login {
       invokeErrorModal('Can\'t remove token from storage')
     }
   }
+
   getUserData = generatorAction(async function *() {
     try {
       const token = await AsyncStorage.getItem('token');

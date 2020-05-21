@@ -4,7 +4,6 @@ import {Image, ImageBackground, SafeAreaView, ScrollView, TouchableOpacity, View
 import {inject, observer} from 'mobx-react';
 import {CustomText} from "../shared/CustomText";
 import {sharedStyles} from "../../sharedStyles/styles"
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {IconBlock} from "./IconBlock";
 import {Map} from "./Map";
 const background = require("../../assets/images/cafe_background.jpeg");
