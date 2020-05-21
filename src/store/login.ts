@@ -94,9 +94,9 @@ class Login implements Login {
   @action.bound
   async logout() {
     try {
-      await AsyncStorage.removeItem('token');
+      navigate('Home');
       this.user = null;
-      navigate('Login');
+      await AsyncStorage.removeItem('token');
     } catch (e) {
       invokeErrorModal('Can\'t remove token from storage')
     }

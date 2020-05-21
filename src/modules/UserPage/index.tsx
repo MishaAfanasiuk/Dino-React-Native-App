@@ -24,7 +24,7 @@ export const UserPage = inject('loginStore')(observer(({ navigation, loginStore}
 
   const editMode = useMemo(() => loginStore.editMode, [loginStore.editMode]);
 
-  const [state, setState] = useState({email: user.email, phone: user.phone});
+  const [state, setState] = useState({email: user ? user.email : '', phone: user ? user.phone : ''});
   const handleEmailChange = (email) => {
     setState({...state, email})
   };
@@ -39,11 +39,11 @@ export const UserPage = inject('loginStore')(observer(({ navigation, loginStore}
         </TouchableOpacity>
       </ImageBackground>
       {(!editMode && <>
-            <CustomText styles={sharedStyles.title} text={`${user.firstName} ${user.lastName}`} />
-            <CustomText styles={sharedStyles.infoText} text={`${user._id}`} />
+            <CustomText styles={sharedStyles.title} text={user ? `${user.firstName} ${user.lastName}` : ''} />
+            <CustomText styles={sharedStyles.infoText} text={user ? `${user._id}`: ''} />
             <View style={userStyles.coinBlock}>
               <Image style={userStyles.countImg} source={require('../../assets/images/price-tag.png')}/>
-              <CustomText text={`${user.coins} coins`} styles={sharedStyles.title} />
+              <CustomText text={user ? `${user.coins} coins` : ''} styles={sharedStyles.title} />
             </View>
             </>
       )}
@@ -87,11 +87,11 @@ export const UserPage = inject('loginStore')(observer(({ navigation, loginStore}
         <View>
           <View style={userStyles.userInfoBlock}>
             <CustomText styles={userStyles.userInfoTitle} text={'email'}/>
-            <CustomText styles={userStyles.userInfoValue} text={user.email}/>
+            <CustomText styles={userStyles.userInfoValue} text={user ? user.email : ''}/>
           </View>
           <View style={userStyles.userInfoBlock}>
           <CustomText styles={userStyles.userInfoTitle} text={'phone'}/>
-          <CustomText styles={userStyles.userInfoValue} text={user.phone}/>
+          <CustomText styles={userStyles.userInfoValue} text={user ? user.phone : ''}/>
           </View>
           <TouchableOpacity style={userStyles.userCard} onPress={loginStore.displayingCard}>
             <CustomText styles={userStyles.userCardTitle} text={'Your card'}/>
@@ -109,7 +109,7 @@ export const UserPage = inject('loginStore')(observer(({ navigation, loginStore}
         <DialogContent>
           <CustomText styles={userStyles.userCardTitle} text={'Your card'}/>
         <Image style={userStyles.userCardQR} source={require('../../assets/images/qrEx.png')}/>
-          <CustomText styles={userStyles.userCardTitle} text={user._id}/>
+          <CustomText styles={userStyles.userCardTitle} text={user ? user._id : ''}/>
         </DialogContent>
       </Dialog>
     </View>
