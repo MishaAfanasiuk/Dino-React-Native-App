@@ -35,6 +35,34 @@ export const Map = () => {
 
   return (
     <View>
+      <MapView
+        provider={PROVIDER_GOOGLE}
+        style={aboutStyles.mapStyle}
+        initialRegion={{
+          latitude: 50.46266761,
+          longitude: 30.52001953,
+          latitudeDelta: 0.15,
+          longitudeDelta: 0.15,
+        }}>
+        {(location &&
+          <Marker
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+          />)}
+        <Marker
+          coordinate={{
+            latitude: 50.46266761,
+            longitude: 30.52001953,
+          }}
+        >
+          <Image
+            source={require('../../../assets/images/dinoGeo.png')}
+            style={aboutStyles.dinoMarker}
+          />
+        </Marker>
+      </MapView>
     </View>
   );
 };
