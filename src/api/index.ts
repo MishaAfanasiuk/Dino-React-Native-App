@@ -48,6 +48,7 @@ export const getUserAchievements = (): Promise<AxiosResponse> => {
 };
 
 export const getFullImage = (imageSrc: string): Promise<any> => {
-  console.log(imageSrc);
-  return get('/assets/' + imageSrc)
+  return get('assets/' + imageSrc, {
+    responseType: 'arraybuffer'
+  })
 };

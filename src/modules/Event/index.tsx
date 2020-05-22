@@ -31,7 +31,7 @@ export const EventPage = inject('eventStore')
         !event ? (<Text>Spinner should be here )</Text>) :
           (
             <DetailPage
-              source={{uri: getFullImageUrl(event.imageSrc)}}
+              source={{uri: event.imageSrc}}
               title={event.name}
               clarificationBlock={
                 <EventTime from={parseTime(event.startDate)} to={parseTime(event.endDate)} />

@@ -14,7 +14,7 @@ export const HomePageCardBlock = ({ data }: HomePageCardBlockProps) => {
   useEffect(() => {
     updateCardBlockElements(data.map((item) => (
       <HomePageCard
-        source={{uri: getFullImageUrl(item.imageSrc)}}
+        source={{uri: item.imageSrc}}
         eventId={item.eventId}
         isEvent={item.type === 'event'}
         key={item._id}

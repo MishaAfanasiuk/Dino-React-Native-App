@@ -4,6 +4,7 @@ import {View, ImageBackground, Image, ScrollView} from 'react-native';
 import {sharedStyles} from "../../../sharedStyles/styles";
 import {CustomText} from "../CustomText";
 import {PostTime} from "../PostTimeBlock";
+import {CustomImage} from "../Image";
 
 interface DetailPageProps {
   source: {uri: string},
@@ -17,9 +18,9 @@ interface DetailPageProps {
 export const DetailPage = ({ source, title, sale, clarificationBlock, information, postTime }: DetailPageProps) => {
   return (
     <ScrollView contentContainerStyle={detailStyles.wrapper} bounces={false}>
-      <ImageBackground source={source} style={detailStyles.image}>
+      <CustomImage source={source} style={detailStyles.image}>
         {sale && <Image style={detailStyles.saleLabel} source={require("../../../assets/images/sale.png")} />}
-      </ImageBackground>
+      </CustomImage>
       <View style={detailStyles.border}>
         <CustomText styles={[sharedStyles.bigTitle]} text={title}/>
       </View>

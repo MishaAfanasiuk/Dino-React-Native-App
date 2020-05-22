@@ -1,11 +1,9 @@
 import {observable, configure, action} from "mobx";
-import {DONE, ERROR, NOT_STARTED, PENDING} from "../constants/requestStatuses";
 import {getDiscounts, getMenu, getFullImage } from "../api";
 import { generatorAction } from '../utis/bindDecorator'
 import {hideSpinner, showSpinner} from "./appStore";
 import {invokeErrorModal} from "../utis/invokeErrorModal";
 import {AsyncStorage} from "react-native";
-import {getFullImageUrl} from "../utis/getImageUrl";
 configure({enforceActions: 'never'});
 
 class Menu {
@@ -19,6 +17,7 @@ class Menu {
       showSpinner();
       try {
         let pos_menu = await AsyncStorage.getItem('menu');
+
         let menuTime = parseInt(await AsyncStorage.getItem('menuTime'));
         const currTime = new Date().valueOf();
         if(!pos_menu || (currTime - menuTime >= 10000000) || !menuTime){
@@ -27,7 +26,7 @@ class Menu {
           }
           const {data} = yield getMenu();
           this.menu = data;
-          this.setTimeToStorage(currTime.toString());
+          this.setTimeToStorage('menuTime', currTime.toString());
           this.setMenuToStorage(JSON.stringify(data));
         }
         else {
@@ -40,6 +39,7 @@ class Menu {
         hideSpinner()
       }
     }, this);
+
   @action
   async setMenuToStorage(menu) {
     try {
