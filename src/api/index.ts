@@ -46,3 +46,8 @@ export const getPlaces = (): Promise<AxiosResponse> => {
 export const getUserAchievements = (): Promise<AxiosResponse> => {
   return get('/user')
 };
+
+export const getFullImage = (imageSrc: string): Promise<any> => {
+  console.log(imageSrc);
+  return get('/assets/' + imageSrc)
+};
